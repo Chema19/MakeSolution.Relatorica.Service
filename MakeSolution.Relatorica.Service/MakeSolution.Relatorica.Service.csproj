@@ -161,6 +161,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -251,6 +252,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MakeSolution.Relatorica.DataAccess\MakeSolution.Relatorica.DataAccess.csproj">
+      <Project>{d0bf1e44-9ee1-4bd1-983b-816f04fc1e6b}</Project>
+      <Name>MakeSolution.Relatorica.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakeSolution.Relatorica.Entities\MakeSolution.Relatorica.Entities.csproj">
+      <Project>{3727c809-146c-48d9-9f8f-0a1262471357}</Project>
+      <Name>MakeSolution.Relatorica.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakeSolution.Relatorica.Helpers\MakeSolution.Relatorica.Helpers.csproj">
+      <Project>{d8727ca1-3ff2-4958-8d4f-b5722a92cfba}</Project>
+      <Name>MakeSolution.Relatorica.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
