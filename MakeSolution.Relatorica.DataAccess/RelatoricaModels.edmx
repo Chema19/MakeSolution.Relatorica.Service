@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RelatoricaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Avance">
+          <Key>
+            <PropertyRef Name="AvanceId" />
+          </Key>
+          <Property Name="AvanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HijoId" Type="int" />
+          <Property Name="PorcentajeAvance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ParrafoId" Type="int" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="CompraId" />
+          </Key>
+          <Property Name="CompraId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PadreId" Type="int" />
+          <Property Name="HistoriaId" Type="int" />
+          <Property Name="FechaCompra" Type="datetime" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="Costo" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="DepartamentoId" />
+          </Key>
+          <Property Name="DepartamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="DistritoId" />
+          </Key>
+          <Property Name="DistritoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProvinciaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="GeneroId" />
+          </Key>
+          <Property Name="GeneroId" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Hijo">
+          <Key>
+            <PropertyRef Name="HijoId" />
+          </Key>
+          <Property Name="HijoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCompleto" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar(max)" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="PadreId" Type="int" />
+        </EntityType>
+        <EntityType Name="Historia">
+          <Key>
+            <PropertyRef Name="HistoriaId" />
+          </Key>
+          <Property Name="HistoriaId" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="UsuarioId" Type="int" />
+          <Property Name="Argumento" Type="varchar(max)" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Editorial" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Padre">
+          <Key>
+            <PropertyRef Name="PadreId" />
+          </Key>
+          <Property Name="PadreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar(max)" />
+          <Property Name="Apellidos" Type="varchar(max)" />
+          <Property Name="Credenciales" Type="varchar(max)" />
+          <Property Name="Contrasenia" Type="varchar(max)" />
+          <Property Name="Correo" Type="varchar(max)" />
+          <Property Name="Celular" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="DistritoId" Type="int" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Parrafo">
+          <Key>
+            <PropertyRef Name="ParrafoId" />
+          </Key>
+          <Property Name="ParrafoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Texto" Type="varchar(max)" />
+          <Property Name="Orden" Type="int" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="HistoriaId" Type="int" />
+          <Property Name="SonidoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="PreguntaId" />
+          </Key>
+          <Property Name="PreguntaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Enunciado" Type="varchar(max)" />
+          <Property Name="FechaRegistro" Type="datetime" />
+          <Property Name="Estatus" Type="varchar" MaxLength="3" />
+          <Property Name="HistoriaId" Type="int" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="ProvinciaId" />
+          </Key>
+          <Property Name="ProvinciaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="DepartamentoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sonido">
+          <Key>
+            <PropertyRef Name="SonidoId" />
+          </Key>
+          <Property Name="SonidoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar(max)" />
+          <Property Name="Url" Type="varchar(max)" />
+          <Property Name="GeneroId" Type="int" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="FechaRegistro" Type="varchar(max)" />
+          <Property Name="UsuarioId" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombres" Type="varchar(max)" />
+          <Property Name="Apellidos" Type="varchar(max)" />
+          <Property Name="Credenciales" Type="varchar(max)" />
+          <Property Name="Contrasenia" Type="varchar(max)" />
+          <Property Name="Correo" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar" MaxLength="3" />
+          <Property Name="FechaRegistro" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Avance_Hijo">
+          <End Role="Hijo" Type="Self.Hijo" Multiplicity="0..1" />
+          <End Role="Avance" Type="Self.Avance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hijo">
+              <PropertyRef Name="HijoId" />
+            </Principal>
+            <Dependent Role="Avance">
+              <PropertyRef Name="HijoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avance_Parrafo">
+          <End Role="Parrafo" Type="Self.Parrafo" Multiplicity="0..1" />
+          <End Role="Avance" Type="Self.Avance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parrafo">
+              <PropertyRef Name="ParrafoId" />
+            </Principal>
+            <Dependent Role="Avance">
+              <PropertyRef Name="ParrafoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Historia">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="HistoriaId" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="HistoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Padre">
+          <End Role="Padre" Type="Self.Padre" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padre">
+              <PropertyRef Name="PadreId" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Distrito_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="ProvinciaId" />
+            </Principal>
+            <Dependent Role="Distrito">
+              <PropertyRef Name="ProvinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hijo_Padre">
+          <End Role="Padre" Type="Self.Padre" Multiplicity="0..1" />
+          <End Role="Hijo" Type="Self.Hijo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padre">
+              <PropertyRef Name="PadreId" />
+            </Principal>
+            <Dependent Role="Hijo">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historia_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Historia" Type="Self.Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Padre_Distrito">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+          <End Role="Padre" Type="Self.Padre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="DistritoId" />
+            </Principal>
+            <Dependent Role="Padre">
+              <PropertyRef Name="DistritoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parrafo_Historia">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="0..1" />
+          <End Role="Parrafo" Type="Self.Parrafo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="HistoriaId" />
+            </Principal>
+            <Dependent Role="Parrafo">
+              <PropertyRef Name="HistoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parrafo_Sonido">
+          <End Role="Sonido" Type="Self.Sonido" Multiplicity="0..1" />
+          <End Role="Parrafo" Type="Self.Parrafo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sonido">
+              <PropertyRef Name="SonidoId" />
+            </Principal>
+            <Dependent Role="Parrafo">
+              <PropertyRef Name="SonidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregunta_Historia">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="0..1" />
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="HistoriaId" />
+            </Principal>
+            <Dependent Role="Pregunta">
+              <PropertyRef Name="HistoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincia_Departamento">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="DepartamentoId" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="DepartamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sonido_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Sonido" Type="Self.Sonido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="GeneroId" />
+            </Principal>
+            <Dependent Role="Sonido">
+              <PropertyRef Name="GeneroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sonido_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Sonido" Type="Self.Sonido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Sonido">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RelatoricaModelStoreContainer">
+          <EntitySet Name="Avance" EntityType="Self.Avance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compra" EntityType="Self.Compra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hijo" EntityType="Self.Hijo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historia" EntityType="Self.Historia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Padre" EntityType="Self.Padre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parrafo" EntityType="Self.Parrafo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sonido" EntityType="Self.Sonido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Avance_Hijo" Association="Self.FK_Avance_Hijo">
+            <End Role="Hijo" EntitySet="Hijo" />
+            <End Role="Avance" EntitySet="Avance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avance_Parrafo" Association="Self.FK_Avance_Parrafo">
+            <End Role="Parrafo" EntitySet="Parrafo" />
+            <End Role="Avance" EntitySet="Avance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Historia" Association="Self.FK_Compra_Historia">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Padre" Association="Self.FK_Compra_Padre">
+            <End Role="Padre" EntitySet="Padre" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Distrito_Provincia" Association="Self.FK_Distrito_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Distrito" EntitySet="Distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hijo_Padre" Association="Self.FK_Hijo_Padre">
+            <End Role="Padre" EntitySet="Padre" />
+            <End Role="Hijo" EntitySet="Hijo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historia_Usuario" Association="Self.FK_Historia_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Padre_Distrito" Association="Self.FK_Padre_Distrito">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Padre" EntitySet="Padre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parrafo_Historia" Association="Self.FK_Parrafo_Historia">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Parrafo" EntitySet="Parrafo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parrafo_Sonido" Association="Self.FK_Parrafo_Sonido">
+            <End Role="Sonido" EntitySet="Sonido" />
+            <End Role="Parrafo" EntitySet="Parrafo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregunta_Historia" Association="Self.FK_Pregunta_Historia">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Pregunta" EntitySet="Pregunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Departamento" Association="Self.FK_Provincia_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Provincia" EntitySet="Provincia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sonido_Genero" Association="Self.FK_Sonido_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Sonido" EntitySet="Sonido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sonido_Usuario" Association="Self.FK_Sonido_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sonido" EntitySet="Sonido" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RelatoricaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Avance">
+          <Key>
+            <PropertyRef Name="AvanceId" />
+          </Key>
+          <Property Name="AvanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HijoId" Type="Int32" />
+          <Property Name="PorcentajeAvance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ParrafoId" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Hijo" Relationship="Self.FK_Avance_Hijo" FromRole="Avance" ToRole="Hijo" />
+          <NavigationProperty Name="Parrafo" Relationship="Self.FK_Avance_Parrafo" FromRole="Avance" ToRole="Parrafo" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="CompraId" />
+          </Key>
+          <Property Name="CompraId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PadreId" Type="Int32" />
+          <Property Name="HistoriaId" Type="Int32" />
+          <Property Name="FechaCompra" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Costo" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Historia" Relationship="Self.FK_Compra_Historia" FromRole="Compra" ToRole="Historia" />
+          <NavigationProperty Name="Padre" Relationship="Self.FK_Compra_Padre" FromRole="Compra" ToRole="Padre" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="DepartamentoId" />
+          </Key>
+          <Property Name="DepartamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_Provincia_Departamento" FromRole="Departamento" ToRole="Provincia" />
+        </EntityType>
+        <EntityType Name="Distrito">
+          <Key>
+            <PropertyRef Name="DistritoId" />
+          </Key>
+          <Property Name="DistritoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProvinciaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Provincia" Relationship="Self.FK_Distrito_Provincia" FromRole="Distrito" ToRole="Provincia" />
+          <NavigationProperty Name="Padre" Relationship="Self.FK_Padre_Distrito" FromRole="Distrito" ToRole="Padre" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="GeneroId" />
+          </Key>
+          <Property Name="GeneroId" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sonido" Relationship="Self.FK_Sonido_Genero" FromRole="Genero" ToRole="Sonido" />
+        </EntityType>
+        <EntityType Name="Hijo">
+          <Key>
+            <PropertyRef Name="HijoId" />
+          </Key>
+          <Property Name="HijoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="PadreId" Type="Int32" />
+          <NavigationProperty Name="Avance" Relationship="Self.FK_Avance_Hijo" FromRole="Hijo" ToRole="Avance" />
+          <NavigationProperty Name="Padre" Relationship="Self.FK_Hijo_Padre" FromRole="Hijo" ToRole="Padre" />
+        </EntityType>
+        <EntityType Name="Historia">
+          <Key>
+            <PropertyRef Name="HistoriaId" />
+          </Key>
+          <Property Name="HistoriaId" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <Property Name="Argumento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Editorial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compra" Relationship="Self.FK_Compra_Historia" FromRole="Historia" ToRole="Compra" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Historia_Usuario" FromRole="Historia" ToRole="Usuario" />
+          <NavigationProperty Name="Parrafo" Relationship="Self.FK_Parrafo_Historia" FromRole="Historia" ToRole="Parrafo" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Pregunta_Historia" FromRole="Historia" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Padre">
+          <Key>
+            <PropertyRef Name="PadreId" />
+          </Key>
+          <Property Name="PadreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Credenciales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="DistritoId" Type="Int32" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Compra" Relationship="Self.FK_Compra_Padre" FromRole="Padre" ToRole="Compra" />
+          <NavigationProperty Name="Distrito" Relationship="Self.FK_Padre_Distrito" FromRole="Padre" ToRole="Distrito" />
+          <NavigationProperty Name="Hijo" Relationship="Self.FK_Hijo_Padre" FromRole="Padre" ToRole="Hijo" />
+        </EntityType>
+        <EntityType Name="Parrafo">
+          <Key>
+            <PropertyRef Name="ParrafoId" />
+          </Key>
+          <Property Name="ParrafoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="HistoriaId" Type="Int32" />
+          <Property Name="SonidoId" Type="Int32" />
+          <NavigationProperty Name="Avance" Relationship="Self.FK_Avance_Parrafo" FromRole="Parrafo" ToRole="Avance" />
+          <NavigationProperty Name="Historia" Relationship="Self.FK_Parrafo_Historia" FromRole="Parrafo" ToRole="Historia" />
+          <NavigationProperty Name="Sonido" Relationship="Self.FK_Parrafo_Sonido" FromRole="Parrafo" ToRole="Sonido" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="PreguntaId" />
+          </Key>
+          <Property Name="PreguntaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enunciado" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <Property Name="Estatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="HistoriaId" Type="Int32" />
+          <NavigationProperty Name="Historia" Relationship="Self.FK_Pregunta_Historia" FromRole="Pregunta" ToRole="Historia" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="ProvinciaId" />
+          </Key>
+          <Property Name="ProvinciaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DepartamentoId" Type="Int32" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK_Provincia_Departamento" FromRole="Provincia" ToRole="Departamento" />
+          <NavigationProperty Name="Distrito" Relationship="Self.FK_Distrito_Provincia" FromRole="Provincia" ToRole="Distrito" />
+        </EntityType>
+        <EntityType Name="Sonido">
+          <Key>
+            <PropertyRef Name="SonidoId" />
+          </Key>
+          <Property Name="SonidoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GeneroId" Type="Int32" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioId" Type="Int32" />
+          <NavigationProperty Name="Genero" Relationship="Self.FK_Sonido_Genero" FromRole="Sonido" ToRole="Genero" />
+          <NavigationProperty Name="Parrafo" Relationship="Self.FK_Parrafo_Sonido" FromRole="Sonido" ToRole="Parrafo" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Sonido_Usuario" FromRole="Sonido" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UsuarioId" />
+          </Key>
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Credenciales" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Historia" Relationship="Self.FK_Historia_Usuario" FromRole="Usuario" ToRole="Historia" />
+          <NavigationProperty Name="Sonido" Relationship="Self.FK_Sonido_Usuario" FromRole="Usuario" ToRole="Sonido" />
+        </EntityType>
+        <Association Name="FK_Avance_Hijo">
+          <End Role="Hijo" Type="Self.Hijo" Multiplicity="0..1" />
+          <End Role="Avance" Type="Self.Avance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hijo">
+              <PropertyRef Name="HijoId" />
+            </Principal>
+            <Dependent Role="Avance">
+              <PropertyRef Name="HijoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Avance_Parrafo">
+          <End Role="Parrafo" Type="Self.Parrafo" Multiplicity="0..1" />
+          <End Role="Avance" Type="Self.Avance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parrafo">
+              <PropertyRef Name="ParrafoId" />
+            </Principal>
+            <Dependent Role="Avance">
+              <PropertyRef Name="ParrafoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Historia">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="HistoriaId" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="HistoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compra_Padre">
+          <End Role="Padre" Type="Self.Padre" Multiplicity="0..1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padre">
+              <PropertyRef Name="PadreId" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincia_Departamento">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="DepartamentoId" />
+            </Principal>
+            <Dependent Role="Provincia">
+              <PropertyRef Name="DepartamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Distrito_Provincia">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="ProvinciaId" />
+            </Principal>
+            <Dependent Role="Distrito">
+              <PropertyRef Name="ProvinciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Padre_Distrito">
+          <End Role="Distrito" Type="Self.Distrito" Multiplicity="0..1" />
+          <End Role="Padre" Type="Self.Padre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Distrito">
+              <PropertyRef Name="DistritoId" />
+            </Principal>
+            <Dependent Role="Padre">
+              <PropertyRef Name="DistritoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sonido_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Sonido" Type="Self.Sonido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="GeneroId" />
+            </Principal>
+            <Dependent Role="Sonido">
+              <PropertyRef Name="GeneroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hijo_Padre">
+          <End Role="Padre" Type="Self.Padre" Multiplicity="0..1" />
+          <End Role="Hijo" Type="Self.Hijo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Padre">
+              <PropertyRef Name="PadreId" />
+            </Principal>
+            <Dependent Role="Hijo">
+              <PropertyRef Name="PadreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Historia_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Historia" Type="Self.Historia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Historia">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parrafo_Historia">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="0..1" />
+          <End Role="Parrafo" Type="Self.Parrafo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="HistoriaId" />
+            </Principal>
+            <Dependent Role="Parrafo">
+              <PropertyRef Name="HistoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregunta_Historia">
+          <End Role="Historia" Type="Self.Historia" Multiplicity="0..1" />
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Historia">
+              <PropertyRef Name="HistoriaId" />
+            </Principal>
+            <Dependent Role="Pregunta">
+              <PropertyRef Name="HistoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parrafo_Sonido">
+          <End Role="Sonido" Type="Self.Sonido" Multiplicity="0..1" />
+          <End Role="Parrafo" Type="Self.Parrafo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sonido">
+              <PropertyRef Name="SonidoId" />
+            </Principal>
+            <Dependent Role="Parrafo">
+              <PropertyRef Name="SonidoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sonido_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Sonido" Type="Self.Sonido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="UsuarioId" />
+            </Principal>
+            <Dependent Role="Sonido">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RelatoricaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Avance" EntityType="Self.Avance" />
+          <EntitySet Name="Compra" EntityType="Self.Compra" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" />
+          <EntitySet Name="Distrito" EntityType="Self.Distrito" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" />
+          <EntitySet Name="Hijo" EntityType="Self.Hijo" />
+          <EntitySet Name="Historia" EntityType="Self.Historia" />
+          <EntitySet Name="Padre" EntityType="Self.Padre" />
+          <EntitySet Name="Parrafo" EntityType="Self.Parrafo" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" />
+          <EntitySet Name="Sonido" EntityType="Self.Sonido" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Avance_Hijo" Association="Self.FK_Avance_Hijo">
+            <End Role="Hijo" EntitySet="Hijo" />
+            <End Role="Avance" EntitySet="Avance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Avance_Parrafo" Association="Self.FK_Avance_Parrafo">
+            <End Role="Parrafo" EntitySet="Parrafo" />
+            <End Role="Avance" EntitySet="Avance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Historia" Association="Self.FK_Compra_Historia">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compra_Padre" Association="Self.FK_Compra_Padre">
+            <End Role="Padre" EntitySet="Padre" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincia_Departamento" Association="Self.FK_Provincia_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Provincia" EntitySet="Provincia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Distrito_Provincia" Association="Self.FK_Distrito_Provincia">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Distrito" EntitySet="Distrito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Padre_Distrito" Association="Self.FK_Padre_Distrito">
+            <End Role="Distrito" EntitySet="Distrito" />
+            <End Role="Padre" EntitySet="Padre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sonido_Genero" Association="Self.FK_Sonido_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Sonido" EntitySet="Sonido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hijo_Padre" Association="Self.FK_Hijo_Padre">
+            <End Role="Padre" EntitySet="Padre" />
+            <End Role="Hijo" EntitySet="Hijo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Historia_Usuario" Association="Self.FK_Historia_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Historia" EntitySet="Historia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parrafo_Historia" Association="Self.FK_Parrafo_Historia">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Parrafo" EntitySet="Parrafo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregunta_Historia" Association="Self.FK_Pregunta_Historia">
+            <End Role="Historia" EntitySet="Historia" />
+            <End Role="Pregunta" EntitySet="Pregunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parrafo_Sonido" Association="Self.FK_Parrafo_Sonido">
+            <End Role="Sonido" EntitySet="Sonido" />
+            <End Role="Parrafo" EntitySet="Parrafo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sonido_Usuario" Association="Self.FK_Sonido_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Sonido" EntitySet="Sonido" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RelatoricaModelStoreContainer" CdmEntityContainer="RelatoricaEntities">
+          <EntitySetMapping Name="Avance">
+            <EntityTypeMapping TypeName="RelatoricaModel.Avance">
+              <MappingFragment StoreEntitySet="Avance">
+                <ScalarProperty Name="AvanceId" ColumnName="AvanceId" />
+                <ScalarProperty Name="HijoId" ColumnName="HijoId" />
+                <ScalarProperty Name="PorcentajeAvance" ColumnName="PorcentajeAvance" />
+                <ScalarProperty Name="ParrafoId" ColumnName="ParrafoId" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compra">
+            <EntityTypeMapping TypeName="RelatoricaModel.Compra">
+              <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="CompraId" ColumnName="CompraId" />
+                <ScalarProperty Name="PadreId" ColumnName="PadreId" />
+                <ScalarProperty Name="HistoriaId" ColumnName="HistoriaId" />
+                <ScalarProperty Name="FechaCompra" ColumnName="FechaCompra" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="RelatoricaModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Distrito">
+            <EntityTypeMapping TypeName="RelatoricaModel.Distrito">
+              <MappingFragment StoreEntitySet="Distrito">
+                <ScalarProperty Name="DistritoId" ColumnName="DistritoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ProvinciaId" ColumnName="ProvinciaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genero">
+            <EntityTypeMapping TypeName="RelatoricaModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="GeneroId" ColumnName="GeneroId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hijo">
+            <EntityTypeMapping TypeName="RelatoricaModel.Hijo">
+              <MappingFragment StoreEntitySet="Hijo">
+                <ScalarProperty Name="HijoId" ColumnName="HijoId" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="PadreId" ColumnName="PadreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historia">
+            <EntityTypeMapping TypeName="RelatoricaModel.Historia">
+              <MappingFragment StoreEntitySet="Historia">
+                <ScalarProperty Name="HistoriaId" ColumnName="HistoriaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Argumento" ColumnName="Argumento" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Padre">
+            <EntityTypeMapping TypeName="RelatoricaModel.Padre">
+              <MappingFragment StoreEntitySet="Padre">
+                <ScalarProperty Name="PadreId" ColumnName="PadreId" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Credenciales" ColumnName="Credenciales" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="DistritoId" ColumnName="DistritoId" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parrafo">
+            <EntityTypeMapping TypeName="RelatoricaModel.Parrafo">
+              <MappingFragment StoreEntitySet="Parrafo">
+                <ScalarProperty Name="ParrafoId" ColumnName="ParrafoId" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="HistoriaId" ColumnName="HistoriaId" />
+                <ScalarProperty Name="SonidoId" ColumnName="SonidoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pregunta">
+            <EntityTypeMapping TypeName="RelatoricaModel.Pregunta">
+              <MappingFragment StoreEntitySet="Pregunta">
+                <ScalarProperty Name="PreguntaId" ColumnName="PreguntaId" />
+                <ScalarProperty Name="Enunciado" ColumnName="Enunciado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="HistoriaId" ColumnName="HistoriaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="RelatoricaModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="ProvinciaId" ColumnName="ProvinciaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sonido">
+            <EntityTypeMapping TypeName="RelatoricaModel.Sonido">
+              <MappingFragment StoreEntitySet="Sonido">
+                <ScalarProperty Name="SonidoId" ColumnName="SonidoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="GeneroId" ColumnName="GeneroId" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="RelatoricaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Credenciales" ColumnName="Credenciales" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
