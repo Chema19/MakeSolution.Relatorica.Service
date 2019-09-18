@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace MakeSolution.Relatorica.Entities
 {
-    public class HijoEntity
+    public class ParrafoEntity
     {
-        public Int32? HijoId { set; get; }
-        public String NombreCompleto { set; get; }
+        public Int32? ParrafoId { set; get; }
+        public String Texto { set; get; }
+        public Int32? Orden { set; get; }
         public String Estado { set; get; }
         public DateTime FechaRegistro { set; get; }
-        public DateTime FechaNacimiento { set; get; }
-        public Int32? PadreId { set; get; }
+        public Int32? HistoriaId { set; get; }
+        public Int32? SonidoId { set; get; }
     }
 }

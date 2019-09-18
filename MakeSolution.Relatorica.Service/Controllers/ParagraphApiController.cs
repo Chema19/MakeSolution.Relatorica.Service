@@ -12,29 +12,27 @@ using System.Web.Http;
 namespace MakeSolution.Relatorica.Service.Controllers
 {
     [Authorize]
-    [RoutePrefix("historiaapi")]
-    public class HistoryApiController : BaseApiController
+    [RoutePrefix("paragraphsapi")]
+    public class ParagraphApiController : BaseApiController
     {
         [HttpGet]
-        [Route("histories")]
-        public IHttpActionResult LisHistories()
+        [Route("paragraphs")]
+        public IHttpActionResult LisParagraphs()
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Historia.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    response.Data = context.Parrafo.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
+                        ParrafoId = x.ParrafoId,
+                        Texto = x.Texto,
+                        Orden = x.Orden,
                         HistoriaId = x.HistoriaId,
-                        Nombre = x.Nombre,
-                        UsuarioId = x.UsuarioId,
-                        NombreUsuario = x.Usuario.Nombres + " " + x.Usuario.Apellidos,
-                        Argumento = x.Argumento,
+                        SonidoId = x.SonidoId,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
-                        Precio = x.Precio,
-                        Editorial = x.Editorial,
-                    }).ToList();
+                    }).OrderBy(x=>x.Orden).ToList();
 
                     response.Error = false;
                     response.Message = "Success";
@@ -49,24 +47,22 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpGet]
-        [Route("histories/{HistoriaId}")]
-        public IHttpActionResult ViewHistories(Int32? HistoriaId)
+        [Route("paragraphs/{ParrafoId}")]
+        public IHttpActionResult ViewParagraphs(Int32? ParrafoId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Historia.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.HistoriaId == HistoriaId).Select(x => new
+                    response.Data = context.Parrafo.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.ParrafoId == ParrafoId).Select(x => new
                     {
+                        ParrafoId = x.ParrafoId,
+                        Texto = x.Texto,
+                        Orden = x.Orden,
                         HistoriaId = x.HistoriaId,
-                        Nombre = x.Nombre,
-                        UsuarioId = x.UsuarioId,
-                        NombreUsuario = x.Usuario.Nombres + " " + x.Usuario.Apellidos,
-                        Argumento = x.Argumento,
+                        SonidoId = x.SonidoId,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
-                        Precio = x.Precio,
-                        Editorial = x.Editorial,
                     }).FirstOrDefault();
 
                     response.Error = false;
@@ -82,31 +78,31 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPost]
-        [Route("histories")]
-        public IHttpActionResult AddHistories(HistoriaEntity model)
+        [Route("paragraphs")]
+        public IHttpActionResult AddParagraphs(ParrafoEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Historia historia = new Historia();
-                    if (!model.HistoriaId.HasValue)
+                    Parrafo parrafo = new Parrafo();
+                    if (!model.ParrafoId.HasValue)
                     {
-                        context.Historia.Add(historia);
-                        historia.Estado = ConstantHelpers.ESTADO.ACTIVO;
-                        historia.FechaRegistro = DateTime.Now;
+                        context.Parrafo.Add(parrafo);
+                        parrafo.Estado = ConstantHelpers.ESTADO.ACTIVO;
+                        parrafo.FechaRegistro = DateTime.Now;
                     }
 
-                    historia.UsuarioId = model.UsuarioId;
-                    historia.Argumento = model.Argumento;
-                    historia.Precio = model.Precio;
-                    historia.Editorial = model.Editorial;
+                    parrafo.Texto = model.Texto;
+                    parrafo.Orden = model.Orden;
+                    parrafo.HistoriaId = model.HistoriaId;
+                    parrafo.SonidoId = model.SonidoId;
 
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Historia Agregada con éxito";
+                response.Data = "Parrafo agregado con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
@@ -118,29 +114,29 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPut]
-        [Route("histories")]
-        public IHttpActionResult EditHistories(HistoriaEntity model)
+        [Route("paragraphs")]
+        public IHttpActionResult EditParagraphs(ParrafoEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Historia historia = new Historia();
-                    if (model.HistoriaId.HasValue)
+                    Parrafo parrafo = new Parrafo();
+                    if (model.ParrafoId.HasValue)
                     {
-                        historia = context.Historia.FirstOrDefault(x => x.HistoriaId == model.HistoriaId);
+                        parrafo = context.Parrafo.FirstOrDefault(x => x.ParrafoId == model.ParrafoId);
                     }
 
-                    historia.UsuarioId = model.UsuarioId;
-                    historia.Argumento = model.Argumento;
-                    historia.Precio = model.Precio;
-                    historia.Editorial = model.Editorial;
+                    parrafo.Texto = model.Texto;
+                    parrafo.Orden = model.Orden;
+                    parrafo.HistoriaId = model.HistoriaId;
+                    parrafo.SonidoId = model.SonidoId;
 
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Historia Actualizada con éxito";
+                response.Data = "Parrafo Actualizada con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
@@ -152,22 +148,22 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpDelete]
-        [Route("histories/{HistoriaId}")]
-        public IHttpActionResult DeleteProduct(Int32? HistoriaId)
+        [Route("paragraphs/{ParrafoId}")]
+        public IHttpActionResult DeleteProduct(Int32? ParrafoId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    if (HistoriaId.HasValue)
+                    if (ParrafoId.HasValue)
                     {
-                        var historia = context.Historia.FirstOrDefault(x => x.HistoriaId == HistoriaId);
-                        historia.Estado = ConstantHelpers.ESTADO.INACTIVO;
+                        var parrafo = context.Parrafo.FirstOrDefault(x => x.ParrafoId == ParrafoId);
+                        parrafo.Estado = ConstantHelpers.ESTADO.INACTIVO;
                         context.SaveChanges();
                     }
                     ts.Complete();
                 }
-                response.Data = "Historia Eliminada";
+                response.Data = "Parrafo Eliminada";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);

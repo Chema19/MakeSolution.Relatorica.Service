@@ -12,28 +12,25 @@ using System.Web.Http;
 namespace MakeSolution.Relatorica.Service.Controllers
 {
     [Authorize]
-    [RoutePrefix("historiaapi")]
-    public class HistoryApiController : BaseApiController
+    [RoutePrefix("childapi")]
+    public class ChildApiController : BaseApiController
     {
         [HttpGet]
-        [Route("histories")]
-        public IHttpActionResult LisHistories()
+        [Route("childs")]
+        public IHttpActionResult LisChilds()
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Historia.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    response.Data = context.Hijo.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
-                        HistoriaId = x.HistoriaId,
-                        Nombre = x.Nombre,
-                        UsuarioId = x.UsuarioId,
-                        NombreUsuario = x.Usuario.Nombres + " " + x.Usuario.Apellidos,
-                        Argumento = x.Argumento,
+                        HijoId = x.HijoId,
+                        NombreCompleto = x.NombreCompleto,
+                        FechaNacimiento = x.FechaNacimiento,
+                        PadreId = x.PadreId,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
-                        Precio = x.Precio,
-                        Editorial = x.Editorial,
                     }).ToList();
 
                     response.Error = false;
@@ -49,24 +46,21 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpGet]
-        [Route("histories/{HistoriaId}")]
-        public IHttpActionResult ViewHistories(Int32? HistoriaId)
+        [Route("childs/{HijoId}")]
+        public IHttpActionResult ViewChilds(Int32? HijoId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Historia.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.HistoriaId == HistoriaId).Select(x => new
+                    response.Data = context.Hijo.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.HijoId == HijoId).Select(x => new
                     {
-                        HistoriaId = x.HistoriaId,
-                        Nombre = x.Nombre,
-                        UsuarioId = x.UsuarioId,
-                        NombreUsuario = x.Usuario.Nombres + " " + x.Usuario.Apellidos,
-                        Argumento = x.Argumento,
+                        HijoId = x.HijoId,
+                        NombreCompleto = x.NombreCompleto,
+                        FechaNacimiento = x.FechaNacimiento,
+                        PadreId = x.PadreId,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
-                        Precio = x.Precio,
-                        Editorial = x.Editorial,
                     }).FirstOrDefault();
 
                     response.Error = false;
@@ -82,31 +76,30 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPost]
-        [Route("histories")]
-        public IHttpActionResult AddHistories(HistoriaEntity model)
+        [Route("childs")]
+        public IHttpActionResult AddChilds(HijoEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Historia historia = new Historia();
-                    if (!model.HistoriaId.HasValue)
+                    Hijo hijo = new Hijo();
+                    if (!model.HijoId.HasValue)
                     {
-                        context.Historia.Add(historia);
-                        historia.Estado = ConstantHelpers.ESTADO.ACTIVO;
-                        historia.FechaRegistro = DateTime.Now;
+                        context.Hijo.Add(hijo);
+                        hijo.Estado = ConstantHelpers.ESTADO.ACTIVO;
+                        hijo.FechaRegistro = DateTime.Now;
+                        hijo.PadreId = model.PadreId;
                     }
 
-                    historia.UsuarioId = model.UsuarioId;
-                    historia.Argumento = model.Argumento;
-                    historia.Precio = model.Precio;
-                    historia.Editorial = model.Editorial;
+                    hijo.NombreCompleto = model.NombreCompleto;
+                    hijo.FechaNacimiento = model.FechaNacimiento;
 
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Historia Agregada con éxito";
+                response.Data = "Hijo agregado con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
@@ -118,29 +111,27 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPut]
-        [Route("histories")]
-        public IHttpActionResult EditHistories(HistoriaEntity model)
+        [Route("childs")]
+        public IHttpActionResult EditChilds(HijoEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Historia historia = new Historia();
-                    if (model.HistoriaId.HasValue)
+                    Hijo hijo = new Hijo();
+                    if (model.HijoId.HasValue)
                     {
-                        historia = context.Historia.FirstOrDefault(x => x.HistoriaId == model.HistoriaId);
+                        hijo = context.Hijo.FirstOrDefault(x => x.HijoId == model.HijoId);
                     }
 
-                    historia.UsuarioId = model.UsuarioId;
-                    historia.Argumento = model.Argumento;
-                    historia.Precio = model.Precio;
-                    historia.Editorial = model.Editorial;
+                    hijo.NombreCompleto = model.NombreCompleto;
+                    hijo.FechaNacimiento = model.FechaNacimiento;
 
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Historia Actualizada con éxito";
+                response.Data = "Hijo Actualizada con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
@@ -152,22 +143,22 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpDelete]
-        [Route("histories/{HistoriaId}")]
-        public IHttpActionResult DeleteProduct(Int32? HistoriaId)
+        [Route("childs/{HijoId}")]
+        public IHttpActionResult DeleteProduct(Int32? HijoId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    if (HistoriaId.HasValue)
+                    if (HijoId.HasValue)
                     {
-                        var historia = context.Historia.FirstOrDefault(x => x.HistoriaId == HistoriaId);
-                        historia.Estado = ConstantHelpers.ESTADO.INACTIVO;
+                        var hijo = context.Hijo.FirstOrDefault(x => x.HijoId == HijoId);
+                        hijo.Estado = ConstantHelpers.ESTADO.INACTIVO;
                         context.SaveChanges();
                     }
                     ts.Complete();
                 }
-                response.Data = "Historia Eliminada";
+                response.Data = "Hijo Eliminada";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);

@@ -12,28 +12,26 @@ using System.Web.Http;
 namespace MakeSolution.Relatorica.Service.Controllers
 {
     [Authorize]
-    [RoutePrefix("historiaapi")]
-    public class HistoryApiController : BaseApiController
+    [RoutePrefix("soundsapi")]
+    public class SoundApiController : BaseApiController
     {
         [HttpGet]
-        [Route("histories")]
-        public IHttpActionResult LisHistories()
+        [Route("sounds")]
+        public IHttpActionResult LisSounds()
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Historia.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    response.Data = context.Sonido.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
-                        HistoriaId = x.HistoriaId,
+                        SonidoId = x.SonidoId,
                         Nombre = x.Nombre,
+                        Url = x.Url,
+                        GeneroId = x.GeneroId,
                         UsuarioId = x.UsuarioId,
-                        NombreUsuario = x.Usuario.Nombres + " " + x.Usuario.Apellidos,
-                        Argumento = x.Argumento,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
-                        Precio = x.Precio,
-                        Editorial = x.Editorial,
                     }).ToList();
 
                     response.Error = false;
@@ -49,24 +47,22 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpGet]
-        [Route("histories/{HistoriaId}")]
-        public IHttpActionResult ViewHistories(Int32? HistoriaId)
+        [Route("sounds/{SonidoId}")]
+        public IHttpActionResult ViewSounds(Int32? SonidoId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Historia.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.HistoriaId == HistoriaId).Select(x => new
+                    response.Data = context.Sonido.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.SonidoId == SonidoId).Select(x => new
                     {
-                        HistoriaId = x.HistoriaId,
+                        SonidoId = x.SonidoId,
                         Nombre = x.Nombre,
+                        Url = x.Url,
+                        GeneroId = x.GeneroId,
                         UsuarioId = x.UsuarioId,
-                        NombreUsuario = x.Usuario.Nombres + " " + x.Usuario.Apellidos,
-                        Argumento = x.Argumento,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
-                        Precio = x.Precio,
-                        Editorial = x.Editorial,
                     }).FirstOrDefault();
 
                     response.Error = false;
@@ -82,31 +78,31 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPost]
-        [Route("histories")]
-        public IHttpActionResult AddHistories(HistoriaEntity model)
+        [Route("sounds")]
+        public IHttpActionResult AddSounds(SonidoEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Historia historia = new Historia();
-                    if (!model.HistoriaId.HasValue)
+                    Sonido sonido = new Sonido();
+                    if (!model.SonidoId.HasValue)
                     {
-                        context.Historia.Add(historia);
-                        historia.Estado = ConstantHelpers.ESTADO.ACTIVO;
-                        historia.FechaRegistro = DateTime.Now;
+                        context.Sonido.Add(sonido);
+                        sonido.Estado = ConstantHelpers.ESTADO.ACTIVO;
+                        sonido.FechaRegistro = DateTime.Now;
                     }
 
-                    historia.UsuarioId = model.UsuarioId;
-                    historia.Argumento = model.Argumento;
-                    historia.Precio = model.Precio;
-                    historia.Editorial = model.Editorial;
-
+                    sonido.Nombre = model.Nombre;
+                    sonido.Url = model.Url;
+                    sonido.GeneroId = model.GeneroId;
+                    sonido.UsuarioId = model.UsuarioId;
+                    
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Historia Agregada con éxito";
+                response.Data = "Sonido agregado con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
@@ -118,29 +114,29 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPut]
-        [Route("histories")]
-        public IHttpActionResult EditHistories(HistoriaEntity model)
+        [Route("sounds")]
+        public IHttpActionResult EditSounds(SonidoEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Historia historia = new Historia();
-                    if (model.HistoriaId.HasValue)
+                    Sonido sonido = new Sonido();
+                    if (model.SonidoId.HasValue)
                     {
-                        historia = context.Historia.FirstOrDefault(x => x.HistoriaId == model.HistoriaId);
+                        sonido = context.Sonido.FirstOrDefault(x => x.SonidoId == model.SonidoId);
                     }
 
-                    historia.UsuarioId = model.UsuarioId;
-                    historia.Argumento = model.Argumento;
-                    historia.Precio = model.Precio;
-                    historia.Editorial = model.Editorial;
+                    sonido.Nombre = model.Nombre;
+                    sonido.Url = model.Url;
+                    sonido.GeneroId = model.GeneroId;
+                    sonido.UsuarioId = model.UsuarioId;
 
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Historia Actualizada con éxito";
+                response.Data = "Sonido Actualizada con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
@@ -152,22 +148,22 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpDelete]
-        [Route("histories/{HistoriaId}")]
-        public IHttpActionResult DeleteProduct(Int32? HistoriaId)
+        [Route("sounds/{SonidoId}")]
+        public IHttpActionResult DeleteProduct(Int32? SonidoId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    if (HistoriaId.HasValue)
+                    if (SonidoId.HasValue)
                     {
-                        var historia = context.Historia.FirstOrDefault(x => x.HistoriaId == HistoriaId);
-                        historia.Estado = ConstantHelpers.ESTADO.INACTIVO;
+                        var sonido = context.Sonido.FirstOrDefault(x => x.SonidoId == SonidoId);
+                        sonido.Estado = ConstantHelpers.ESTADO.INACTIVO;
                         context.SaveChanges();
                     }
                     ts.Complete();
                 }
-                response.Data = "Historia Eliminada";
+                response.Data = "Sonido Eliminada";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
