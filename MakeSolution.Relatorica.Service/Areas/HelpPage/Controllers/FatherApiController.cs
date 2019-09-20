@@ -110,7 +110,6 @@ namespace MakeSolution.Relatorica.Service.Controllers
                     padre.Celular = model.Celular;
                     padre.DistritoId = model.DistritoId;
                     padre.FechaNacimiento = model.FechaNacimiento;
-
                     context.SaveChanges();
                     ts.Complete();
                 }

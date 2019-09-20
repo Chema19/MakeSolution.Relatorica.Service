@@ -70,7 +70,6 @@ namespace MakeSolution.Relatorica.Service.Controllers
                     var cantidadParrafos = context.Parrafo.Where(x => x.HistoriaId == parrafo.HistoriaId).ToList().Count();
 
                     avance.PorcentajeAvance = (parrafo.Orden / cantidadParrafos);
-
                     context.SaveChanges();
                     ts.Complete();
                 }

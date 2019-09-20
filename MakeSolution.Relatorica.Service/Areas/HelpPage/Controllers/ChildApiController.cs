@@ -162,6 +162,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);
+                
             }
             catch (Exception e)
             {
