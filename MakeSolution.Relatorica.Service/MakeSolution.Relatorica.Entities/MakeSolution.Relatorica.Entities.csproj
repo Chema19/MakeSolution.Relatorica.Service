@@ -41,8 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HistoriaEntity.cs" />
-    <Compile Include="LoginEntity.cs" />
     <Compile Include="ResultRequestEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
