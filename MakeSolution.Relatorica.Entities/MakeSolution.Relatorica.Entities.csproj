@@ -41,27 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="HistoriaEntity.cs" />
     <Compile Include="LoginEntity.cs" />
-    <Compile Include="PadreEntity.cs" />
-    <Compile Include="HijoEntity.cs" />
     <Compile Include="AvanceEntity.cs" />
-=======
-<<<<<<< HEAD
-    <Compile Include="HistoriaEntity.cs" />
-    <Compile Include="LoginEntity.cs" />
-=======
-    <Compile Include="PadreEntity.cs" />
     <Compile Include="HijoEntity.cs" />
-    <Compile Include="AvanceEntity.cs" />
->>>>>>> 0442b111507facdb3e75f6ee4cd05f77f21cc29c
->>>>>>> 45500a01890de35f0bd641ba5d5ddbc21738e64f
+    <Compile Include="PadreEntity.cs" />
     <Compile Include="ResultRequestEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SonidoEntity.cs" />
     <Compile Include="UsuarioEntity.cs" />
-    
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

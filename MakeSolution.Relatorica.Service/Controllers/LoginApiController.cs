@@ -179,7 +179,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
                     Usuario usuario = new Usuario();
                     if (!model.UsuarioId.HasValue)
                     {
-                        context.Usuario.Add(usuario);
+                        context.    Usuario.Add(usuario);
                         usuario.Estado = ConstantHelpers.ESTADO.ACTIVO;
                         usuario.FechaRegistro = DateTime.Now;
                     }

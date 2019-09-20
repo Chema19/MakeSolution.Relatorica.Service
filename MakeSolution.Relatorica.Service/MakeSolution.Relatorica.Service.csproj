@@ -45,10 +45,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.5.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -161,20 +171,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AdvanceApiController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-<<<<<<< HEAD
-
     <Compile Include="Controllers\GeneralApiController.cs" />
-
     <Compile Include="Controllers\ChildApiController.cs" />
     <Compile Include="Controllers\FatherApiController.cs" />
-
-=======
-    <Compile Include="Controllers\GeneralApiController.cs" />
->>>>>>> 45500a01890de35f0bd641ba5d5ddbc21738e64f
     <Compile Include="Controllers\HistoryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
+    <Compile Include="Controllers\SoundApiController.cs" />
+    <Compile Include="Controllers\TokenGenerator.cs" />
+    <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -278,6 +285,10 @@
     <ProjectReference Include="..\MakeSolution.Relatorica.Helpers\MakeSolution.Relatorica.Helpers.csproj">
       <Project>{d8727ca1-3ff2-4958-8d4f-b5722a92cfba}</Project>
       <Name>MakeSolution.Relatorica.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MakeSolution.Relatorica.Logic\MakeSolution.Relatorica.Logic.csproj">
+      <Project>{8bf30f1b-bbbe-494e-8937-a726c29ccd40}</Project>
+      <Name>MakeSolution.Relatorica.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +19,6 @@ namespace MakeSolution.Relatorica.Entities
         public DateTime FechaRegistro { set; get; }
         public Int32? DistritoId { set; get; }
         public DateTime FechaNacimiento { set; get; }
-        
+
     }
 }
