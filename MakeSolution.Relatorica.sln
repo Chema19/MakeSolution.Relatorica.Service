@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeSolution.Relatorica.Hel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeSolution.Relatorica.Entities", "MakeSolution.Relatorica.Entities\MakeSolution.Relatorica.Entities.csproj", "{3727C809-146C-48D9-9F8F-0A1262471357}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeSolution.Relatorica.Logic", "MakeSolution.Relatorica.Logic\MakeSolution.Relatorica.Logic.csproj", "{480CC7F6-3FFA-4757-88DC-A40500F6B978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakeSolution.Relatorica.Logic", "MakeSolution.Relatorica.Logic\MakeSolution.Relatorica.Logic.csproj", "{8BF30F1B-BBBE-494E-8937-A726C29CCD40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{3727C809-146C-48D9-9F8F-0A1262471357}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3727C809-146C-48D9-9F8F-0A1262471357}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3727C809-146C-48D9-9F8F-0A1262471357}.Release|Any CPU.Build.0 = Release|Any CPU
-		{480CC7F6-3FFA-4757-88DC-A40500F6B978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{480CC7F6-3FFA-4757-88DC-A40500F6B978}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{480CC7F6-3FFA-4757-88DC-A40500F6B978}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{480CC7F6-3FFA-4757-88DC-A40500F6B978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BF30F1B-BBBE-494E-8937-A726C29CCD40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BF30F1B-BBBE-494E-8937-A726C29CCD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BF30F1B-BBBE-494E-8937-A726C29CCD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BF30F1B-BBBE-494E-8937-A726C29CCD40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
