@@ -290,6 +290,10 @@
       <Project>{d8727ca1-3ff2-4958-8d4f-b5722a92cfba}</Project>
       <Name>MakeSolution.Relatorica.Helpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MakeSolution.Relatorica.Logic\MakeSolution.Relatorica.Logic.csproj">
+      <Project>{8bf30f1b-bbbe-494e-8937-a726c29ccd40}</Project>
+      <Name>MakeSolution.Relatorica.Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
