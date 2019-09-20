@@ -165,6 +165,7 @@
     <Compile Include="Controllers\GeneralApiController.cs" />
     <Compile Include="Controllers\HistoryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

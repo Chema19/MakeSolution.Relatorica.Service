@@ -1,4 +1,4 @@
-﻿using MakeSolution.Relatorica.DataAccess;
+using MakeSolution.Relatorica.DataAccess;
 using MakeSolution.Relatorica.Entities;
 using MakeSolution.Relatorica.Helpers;
 using MakeSolution.Relatorica.Logic;
@@ -13,25 +13,28 @@ using System.Web.Http;
 namespace MakeSolution.Relatorica.Service.Controllers
 {
     [Authorize]
-    [RoutePrefix("userapi")]
-    public class UserApiController : BaseApiController
+    [RoutePrefix("fatherapi")]
+    public class FatherApiController : BaseApiController
     {
         [HttpGet]
-        [Route("users")]
-        public IHttpActionResult LisUsers()
+        [Route("fathers")]
+        public IHttpActionResult LisFathers()
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Usuario.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
+                    response.Data = context.Padre.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO).Select(x => new
                     {
-                        UsuarioId = x.UsuarioId,
+                        PadreId = x.PadreId,
                         Nombres = x.Nombres,
                         Apellidos = x.Apellidos,
                         Credenciales = x.Credenciales,
                         Contrasenia = x.Contrasenia,
                         Correo = x.Correo,
+                        Celular = x.Celular,
+                        DistritoId = x.DistritoId,
+                        FechaNacimiento = x.FechaNacimiento,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
                     }).ToList();
@@ -49,21 +52,24 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpGet]
-        [Route("users/{UsuarioId}")]
-        public IHttpActionResult ViewUsers(Int32? UsuarioId)
+        [Route("fathers/{PadreId}")]
+        public IHttpActionResult ViewFathers(Int32? PadreId)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
-                    response.Data = context.Usuario.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.UsuarioId == UsuarioId).Select(x => new
+                    response.Data = context.Padre.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO && x.PadreId == PadreId).Select(x => new
                     {
-                        UsuarioId = x.UsuarioId,
+                        PadreId = x.PadreId,
                         Nombres = x.Nombres,
                         Apellidos = x.Apellidos,
                         Credenciales = x.Credenciales,
                         Contrasenia = x.Contrasenia,
                         Correo = x.Correo,
+                        Celular = x.Celular,
+                        DistritoId = x.DistritoId,
+                        FechaNacimiento = x.FechaNacimiento,
                         FechaRegistro = x.FechaRegistro,
                         Estado = x.Estado,
                     }).FirstOrDefault();
@@ -81,31 +87,33 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPut]
-        [Route("users")]
-        public IHttpActionResult EditUsers(UsuarioEntity model)
+        [Route("fathers")]
+        public IHttpActionResult EditFathers(PadreEntity model)
         {
             try
             {
                 using (var ts = new TransactionScope())
                 {
 
-                    Usuario usuario = new Usuario();
-                    if (model.UsuarioId.HasValue)
+                    Padre padre = new Padre();
+                    if (model.PadreId.HasValue)
                     {
-                        usuario = context.Usuario.FirstOrDefault(x => x.UsuarioId == model.UsuarioId);
+                        padre = context.Padre.FirstOrDefault(x => x.PadreId == model.PadreId);
                     }
 
 
-                    usuario.Nombres = model.Nombres;
-                    usuario.Apellidos = model.Apellidos;
-                    usuario.Credenciales = model.Credenciales;
-                    usuario.Contrasenia = CipherLogic.Cipher(CipherAction.Encrypt, CipherType.UserPassword, model.Contrasenia);
-                    usuario.Correo = model.Correo;
-
+                    padre.Nombres = model.Nombres;
+                    padre.Apellidos = model.Apellidos;
+                    padre.Credenciales = model.Credenciales;
+                    padre.Contrasenia = CipherLogic.Cipher(CipherAction.Encrypt, CipherType.UserPassword, model.Contrasenia);
+                    padre.Correo = model.Correo;
+                    padre.Celular = model.Celular;
+                    padre.DistritoId = model.DistritoId;
+                    padre.FechaNacimiento = model.FechaNacimiento;
                     context.SaveChanges();
                     ts.Complete();
                 }
-                response.Data = "Usuario Actualizado con éxito";
+                response.Data = "Padre Actualizado con éxito";
                 response.Error = false;
                 response.Message = "Success";
                 return Ok(response);

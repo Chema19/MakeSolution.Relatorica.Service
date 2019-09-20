@@ -25,7 +25,7 @@ namespace MakeSolution.Relatorica.DataAccess
         public string Url { get; set; }
         public Nullable<int> GeneroId { get; set; }
         public string Estado { get; set; }
-        public string FechaRegistro { get; set; }
+        public Nullable<System.DateTime> FechaRegistro { get; set; }
         public Nullable<int> UsuarioId { get; set; }
     
         public virtual Genero Genero { get; set; }
