@@ -13,6 +13,7 @@ namespace MakeSolution.Relatorica.Entities
         public Decimal PorcentajeAvance { set; get; }
         public Int32? ParrafoId { set; get; }
         public String Estado { set; get; }
+        
         public DateTime FechaRegistro { set; get; }
     }
 }

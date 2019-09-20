@@ -14,5 +14,6 @@ namespace MakeSolution.Relatorica.Entities
         public DateTime FechaRegistro { set; get; }
         public DateTime FechaNacimiento { set; get; }
         public Int32? PadreId { set; get; }
+        
     }
 }
