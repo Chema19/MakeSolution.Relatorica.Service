@@ -12,6 +12,7 @@ using System.Web.Http;
 namespace MakeSolution.Relatorica.Service.Controllers
 {
     [Authorize]
+
     [RoutePrefix("historiaapi")]
     public class HistoryApiController : BaseApiController
     {
@@ -34,6 +35,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
                         Estado = x.Estado,
                         Precio = x.Precio,
                         Editorial = x.Editorial,
+                        Imagen = x.Imagen
                     }).ToList();
 
                     response.Error = false;
@@ -67,6 +69,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
                         Estado = x.Estado,
                         Precio = x.Precio,
                         Editorial = x.Editorial,
+                        Imagen = x.Imagen
                     }).FirstOrDefault();
 
                     response.Error = false;
@@ -102,6 +105,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
                     historia.Argumento = model.Argumento;
                     historia.Precio = model.Precio;
                     historia.Editorial = model.Editorial;
+                    historia.Imagen = model.Imagen;
 
                     context.SaveChanges();
                     ts.Complete();
@@ -118,7 +122,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpPut]
-        [Route("histories")]
+        [Route("histories")]    
         public IHttpActionResult EditHistories(HistoriaEntity model)
         {
             try
@@ -136,6 +140,7 @@ namespace MakeSolution.Relatorica.Service.Controllers
                     historia.Argumento = model.Argumento;
                     historia.Precio = model.Precio;
                     historia.Editorial = model.Editorial;
+                    historia.Imagen = model.Imagen;
 
                     context.SaveChanges();
                     ts.Complete();

@@ -102,37 +102,38 @@
     <Compile Include="Sonido.cs">
       <DependentUpon>RelatoricaModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>RelatoricaModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuario.cs">
       <DependentUpon>RelatoricaModels.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="RelatoricaModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RelatoricaModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="RelatoricaModels.edmx.diagram">
       <DependentUpon>RelatoricaModels.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="RelatoricaModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RelatoricaModels.Context.cs</LastGenOutput>
       <DependentUpon>RelatoricaModels.edmx</DependentUpon>
+      <LastGenOutput>RelatoricaModels.Context.cs</LastGenOutput>
     </Content>
     <Content Include="RelatoricaModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RelatoricaModels.edmx</DependentUpon>
       <LastGenOutput>RelatoricaModels.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

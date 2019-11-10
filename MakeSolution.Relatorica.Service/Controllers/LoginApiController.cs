@@ -13,6 +13,11 @@ using System.Web.Http;
 
 namespace MakeSolution.Relatorica.Service.Controllers
 {
+    public class classLogin
+    {
+        public String Token { set; get; }
+        public Int32? PersonId { set; get; }
+    }
     [AllowAnonymous]
     [RoutePrefix("loginapi")]
     public class LoginApiController : BaseApiController
@@ -57,13 +62,19 @@ namespace MakeSolution.Relatorica.Service.Controllers
                 Usuario usuario = context.Usuario.FirstOrDefault(x => x.Credenciales == model.Credenciales);
 
                 String contrasenia = CipherLogic.Cipher(CipherAction.Encrypt, CipherType.UserPassword, model.Contrasenia);
+               
 
                 bool isCredentialValid = (contrasenia == usuario.Contrasenia);
 
                 if (isCredentialValid)
                 {
                     var token = TokenGenerator.GenerateTokenJwt(model.Credenciales);
-                    response.Data = token;
+                    Int32? usuarioId = usuario.UsuarioId;
+                    var objLogin = new classLogin();
+                    objLogin.Token = token;
+                    objLogin.PersonId = usuarioId;
+
+                    response.Data = objLogin;
                     response.Error = false;
                     response.Message = "Success";
                     return Ok(response);
@@ -109,9 +120,14 @@ namespace MakeSolution.Relatorica.Service.Controllers
                 bool isCredentialValid = (contrasenia == padre.Contrasenia);
 
                 if (isCredentialValid)
-                {
+                { 
                     var token = TokenGenerator.GenerateTokenJwt(model.Credenciales);
-                    response.Data = token;
+                    Int32? padreId = padre.PadreId;
+                    var objLogin = new classLogin();
+                    objLogin.Token = token;
+                    objLogin.PersonId = padreId;
+
+                    response.Data = objLogin; 
                     response.Error = false;
                     response.Message = "Success";
                     return Ok(response);

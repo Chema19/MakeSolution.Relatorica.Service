@@ -44,6 +44,36 @@ namespace MakeSolution.Relatorica.Service.Controllers
                 return Unauthorized();
             }
         }
+        [HttpGet]
+        [Route("fathers/{PadreId}/purchases")]
+        public IHttpActionResult LisPurchasesByFather(Int32? PadreId)
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.Compra.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO)
+                        .Where(x=>x.PadreId == PadreId).Select(x => new
+                    {
+                        CompraId = x.CompraId,
+                        HistoriaId = x.HistoriaId,
+                        FechaCompra = x.FechaCompra,
+                        PadreId = x.PadreId,
+                        Costo = x.Costo,
+                        Estado = x.Estado,
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
 
         [HttpGet]
         [Route("purchases/{CompraId}")]

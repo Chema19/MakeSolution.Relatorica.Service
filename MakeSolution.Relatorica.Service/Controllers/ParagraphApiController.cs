@@ -47,6 +47,38 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpGet]
+        [Route("histories/{HistoriaId}/paragraphs")]
+        public IHttpActionResult LisParagraphs(Int32 HistoriaId)
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.Parrafo.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO)
+                        .Where(x=>x.HistoriaId == HistoriaId).Select(x => new
+                    {
+                        ParrafoId = x.ParrafoId,
+                        Texto = x.Texto,
+                        Orden = x.Orden,
+                        HistoriaId = x.HistoriaId,
+                        SonidoId = x.SonidoId,
+                        FechaRegistro = x.FechaRegistro,
+                        Estado = x.Estado,
+                    }).OrderBy(x => x.Orden).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
         [Route("paragraphs/{ParrafoId}")]
         public IHttpActionResult ViewParagraphs(Int32? ParrafoId)
         {

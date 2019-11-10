@@ -37,6 +37,7 @@ namespace MakeSolution.Relatorica.DataAccess
         public virtual DbSet<Pregunta> Pregunta { get; set; }
         public virtual DbSet<Provincia> Provincia { get; set; }
         public virtual DbSet<Sonido> Sonido { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

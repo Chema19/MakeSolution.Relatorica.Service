@@ -15,5 +15,6 @@ namespace MakeSolution.Relatorica.Entities
         public DateTime FechaRegistro { set; get; }
         public Decimal Precio { set; get; }
         public String Editorial { set; get; }
+        public String Imagen { set; get; }
     }
 }

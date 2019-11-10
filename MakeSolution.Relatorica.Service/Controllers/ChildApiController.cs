@@ -46,6 +46,37 @@ namespace MakeSolution.Relatorica.Service.Controllers
         }
 
         [HttpGet]
+        [Route("fathers/{PadreId}/childs")]
+        public IHttpActionResult LisChildsByParent(Int32? PadreId)
+        {
+            try
+            {
+                using (var ts = new TransactionScope())
+                {
+                    response.Data = context.Hijo.Where(x => x.Estado == ConstantHelpers.ESTADO.ACTIVO
+                        && x.PadreId == PadreId).Select(x => new
+                    {
+                        HijoId = x.HijoId,
+                        NombreCompleto = x.NombreCompleto,
+                        FechaNacimiento = x.FechaNacimiento,
+                        PadreId = x.PadreId,
+                        FechaRegistro = x.FechaRegistro,
+                        Estado = x.Estado,
+                    }).ToList();
+
+                    response.Error = false;
+                    response.Message = "Success";
+                    ts.Complete();
+                }
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized();
+            }
+        }
+
+        [HttpGet]
         [Route("childs/{HijoId}")]
         public IHttpActionResult ViewChilds(Int32? HijoId)
         {
